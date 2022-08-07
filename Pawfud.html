@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Paw Food</title>
+	
+	<style>
+	
+	
+	.jumbotron {
+	  background-color:#de7002; 
+	  color: #000000;
+	}
+	
+	 .navbar {
+	  margin-bottom: 0;
+	  background-color:#de7002;
+	  z-index: 9999;
+	  border: 0;
+	  font-size: 12px !important;
+	  line-height: 1.42857143 !important;
+	  letter-spacing: 4px;
+	  border-radius: 0;
+	}
+	.navbar li a, .navbar .navbar-brand {
+	  color: #000000 !important;
+	}
+	.navbar-nav li a:hover, .navbar-nav li.active a {
+	  color:#de7002 !important;
+	  background-color: #000000 !important;
+	}
+	.navbar-default .navbar-toggle {
+	  border-color: 000000;
+	  color: #000000 !important;
+	}
+	
+	footer .glyphicon {
+		font-size: 20px;
+		margin-bottom: 20px;
+		color:#de7002;
+	}
+	
+	.mein {
+		float: center ;
+		width:90%;
+		padding: 35px 35px 35px 35px;
+	}
+	
+	progress{
+			-webkit-appearance:none;
+			width:100%;
+			height:30px;
+			border:1px solid #ccc;
+			overflow:hidden;
+			border-radius:20px;
+			}
+			
+		
+		
+	</style>
+	
+    </head>
+	
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" >
+
+	<div class="jumbotron text-center">	
+	<img src="logo.png"  style="width:128px;height:128px"; > 
+	<h1>P A W F U D</h1>
+	<p>A Pet Food Dispenser! </p>
+	</div>	
+	
+	
+	<div class="row">
+	
+
+	 
+	<div class="mein">
+	<div class="col-sm-4">
+		<div class="btn-group">
+			<h3>Feed now?</h3>
+			<div>
+				<button id="ton" onclick="tvon()" type="button" class="btn btn-primary">  Feed </button>
+			</div>
+
+	 	</div>
+	</div>
+	</div>
+	 
+
+	 </div>
+	 
+<!--Firebase-->
+	
+    <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <script>
+        var config = {
+			apiKey: "AIzaSyDLMaErb2V-CD5zbuAyVw5TAYHiWOXE-t8",
+    		authDomain: "pawfud-84419.firebaseapp.com",
+   			databaseURL: "https://pawfud-84419-default-rtdb.firebaseio.com",
+		    projectId: "pawfud-84419",
+		    storageBucket: "pawfud-84419.appspot.com",
+		    messagingSenderId: "1045175852665",
+		    appId: "1:1045175852665:web:d01e73ae5267c9c34ebea8"        };
+        firebase.initializeApp(config);
+		
+		var database = firebase.database();
+
+		var bigOne = document.getElementById('bigOne');
+		var dbRef = firebase.database().ref().child('m');
+		dbRef.on('value', function(snapshot) {
+		bigOne.innerText = snapshot.val();
+		});
+
+	
+	</script>
+	
+<!--On and Off-->	
+
+	<script> 
+		var ton= document.getElementById("ton");		
+
+		function tvon()
+		{
+			var database= firebase.database().ref();
+			database.child("m").set(1);
+		}
+
+	</script>
+
+	<footer class="container-fluid text-center">
+	<a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+	</a>
+	<p>Team 9 | Mini Project </p>
+	</footer>
+</body>
+</html>
